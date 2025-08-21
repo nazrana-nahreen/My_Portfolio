@@ -482,7 +482,8 @@
 
         /* Enhanced Activities Title */
         .activities-title {
-            font-size: clamp(2.5rem, 4rem + 2vw, 5rem);
+            font-size: clamp(1.5rem, 2rem + 1.5vw, 3rem);
+
             color: #ff4f81;
             text-shadow: 
                 0 0 20px rgba(255, 79, 129, 0.4),
@@ -1594,7 +1595,7 @@
     <section id="home">
         <div class="main-container">
             <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
-                <img src="https://via.placeholder.com/400x500?text=Nazrana" alt="Nazrana">
+                <img src="assets/main.png" alt="Nazrana">
             </div>
             <div class="content">
                 <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">
@@ -1636,7 +1637,7 @@
                     </p>
                 </div>
                 <div class="about-img" data-aos="fade-left" data-aos-duration="1200">
-                    <img src="https://via.placeholder.com/400x400?text=About+Me" alt="Nazrana About Photo">
+                    <img src="assets/aboutme.jpg" alt="Nazrana About Photo">
                 </div>
             </div>
 
@@ -1646,7 +1647,7 @@
                 <div class="education-grid">
                     <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
                         <div class="education-logo">
-                            <img src="https://via.placeholder.com/80x80?text=IIUC" alt="University Logo">
+                            <img src="assets/unilogo.png" alt="University Logo">
                         </div>
                         <div class="education-name">International Islamic University Chittagong</div>
                         <div class="education-degree">Bachelor of Computer Science and Engineering</div>
@@ -1654,7 +1655,7 @@
                     </div>
                     <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
                         <div class="education-logo">
-                            <img src="https://via.placeholder.com/80x80?text=CPWC" alt="College Logo">
+                            <img src="assets/collegelogo.png" alt="College Logo">
                         </div>
                         <div class="education-name">Chittagong Port Women College</div>
                         <div class="education-degree">Higher Secondary Certificate</div>
@@ -1662,7 +1663,7 @@
                     </div>
                     <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="500">
                         <div class="education-logo">
-                            <img src="https://via.placeholder.com/80x80?text=SBK" alt="School Logo">
+                            <img src="assets/sbklogo.jpeg" alt="School Logo">
                         </div>
                         <div class="education-name">Silver Bells Kindergarten & Girls' High School</div>
                         <div class="education-degree">Secondary School Certificate</div>
@@ -1683,7 +1684,7 @@
       
       <!-- AI Card -->
       <div class="skill-card" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
-        <img src="assets/Artificial Intelligence.png" alt="AI" class="skill-img">
+        <img src="assets/Artificial-Intelligence.jpg" alt="AI" class="skill-img">
         <h3 class="skill-name">Artificial Intelligence</h3>
         <p class="skill-description">Building intelligent systems, neural networks, and AI projects that solve real-world problems through machine learning algorithms and deep learning frameworks.</p>
       </div>
@@ -1851,7 +1852,7 @@
     <section id="activities">
         <div class="activities-container">
             <h2 class="activities-title" data-aos="fade-down" data-aos-duration="1000">
-                My <span>Activities</span>
+                My Achievements Beyond Academics
                 <div class="activities-title-underline"></div>
             </h2>
             <p class="album-subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
@@ -1927,20 +1928,84 @@
         document.addEventListener('DOMContentLoaded', function () {
             const activities = [
                 {
-                    title: "Photography Club",
-                    description: "I love capturing moments and telling stories through the lens. Photography allows me to see the world from different perspectives and freeze beautiful moments in time.",
-                    image: "https://via.placeholder.com/450x240?text=Photography+Club&bg=ff4f81&color=fff"
+                    title: "Sports",
+                    description: "Another achievement from my university for the first time. Got 2nd runner up prize at table tennis 😃💖 #sports_in_university",
+                    image: "assets/extraactivities/medal.jpeg"
                 },
                 {
-                    title: "Debate Society",
-                    description: "Sharpening public speaking and critical thinking skills through engaging debates and discussions on various topics that matter to our society.",
-                    image: "https://via.placeholder.com/450x240?text=Debate+Society&bg=6a0572&color=fff"
+                    title: "Hult Prize On campus 2023-2024",
+                    description: "My first time hult participation gone incredible. TEAM: BIOME🔥 incredible achievements of these outstanding teams who have made it to the 𝐓𝐨𝐩 𝟓 in the Hult Prize Competition.",
+                    image: "assets/extraactivities/hultparticipate.jpeg"
                 },
                 {
-                    title: "Volunteer Work",
-                    description: "Helping communities and making a difference in people's lives through various volunteer initiatives and social service programs.",
-                    image: "https://via.placeholder.com/450x240?text=Volunteer+Work&bg=1e2a78&color=fff"
-                }
+                    title: "NASA Space App Challenge 2024",
+                    description: "NASA Space App Challenge 2024 was remarkable. Out of 500 projects, 3000 students across 9 divisions we were honored to be selected as one of the top 50, earning a physical invitation to AIUB",
+                    image: "assets/extraactivities/Nasa Spaceapp team.jpeg"
+                },
+                {
+                    title: "Certificate of Recognition: Galactic Problem Solver",
+                    description: "🌟 Proud to be recognized as a Galactic Problem Solver! 🚀",
+                    image: "assets/extraactivities/certificationfornasa.jpeg"
+                },
+                {
+                    title: "Certificate of Achievement Generating Instant App Idea",
+                    description: "had been recognized as one of the winners at the workshop “Empowering Developers: Publish, Monetize, and Excel with Banglalink AppLink”, organized by IEEE IIUC Women in Engineering (WIE) Affinity Group in collaboration with IEEE IIUC Student Branch.",
+                    image: "assets/extraactivities/banglalink.jpeg"
+                },
+
+                {
+                    title: "EDGE Project: Mobile App Development Training Achievement",
+                    description: "Thrilled to have survived among the best students and been shortlisted in the CBI-017 training, gaining invaluable skills under the guidance of Radiathun Tasnia and mentor Sourav Palit. Journey of survival for long 6 months 💻📱",
+                    image: "assets/extraactivities/edgetraining.jpeg"
+                },
+
+                {
+                    title: "🤖 Robotics for Climate Change & Assistive Tech-IEEE WIE Bangladesh Summit 2024",
+                    description: "Excited to be selected as one of the top 15 finalists nationwide for my idea at BUET!",
+                    image: "assets/extraactivities/buet.jpeg"
+                },
+
+                {
+                    title: "Hult Prize 2025 – IIUC Journey",
+                    description: "Thrilled to join the Organizing Committee as a Creative Design & Group Associate Member! 🎨✨",
+                    image: "assets/extraactivities/hultcomettie.jpeg"
+                },
+
+                 {
+                    title: "Award of Recognition: Best Performer – Organizing Committee Member",
+                    description: "honored to be awarded Best Performer - Organizing Committee Member and Best Graphics & Creative Designer for my role as Associate Creative Designer at the Hult Prize 2024-25, IIUC Campus.",
+                    image: "assets/extraactivities/recognizedas_best_oncampus_organizing_comette_member.jpeg"
+                },
+
+                {
+                    title: "Certificate of Achievement : EDGE-CSE CUET Digital Skills Training",
+                    description: "Thrilled to successfully complete the training and celebrate this accomplishment at the Certificate Awarding Ceremony! 🥳",
+                    image: "assets/extraactivities/edge_certification.jpeg"
+                },
+
+                {
+                    title: "Executive Committee Member – IIUC Female Competitive Programming Society (IIUCFCPS)",
+                    description: "I'm thrilled to share that the new Executive Committee of the IIUC Female Competitive Programming Society (IIUCFCPS) for Spring 2025 has officially been introduced — and I'm honored to be part of it as the Design Secretary! ",
+                    image: "assets/extraactivities/iiucfcps.jpeg"
+                },
+
+                 {
+                    title: "Glory Girl",
+                    description: "Officially selected as a Campus Ambassador for the Glory Girls Tech Fest by ICT Olympiad Bangladesh! 💫 ",
+                    image: "assets/extraactivities/glorygirl.jpeg"
+                },
+
+
+                 {
+                    title: "Qualified for the Grand Finale of ICT Olympiad Bangladesh Season-2",
+                    description: "Grateful for the recognition of my hard work and dedication, earning a spot among the top university-level participants in the CSE/CS/IT/EE category. 💻✨",
+                    image: "assets/extraactivities/icto.jpeg"
+                },
+
+
+
+
+
             ];
 
             const activityImg = document.getElementById('activity-img');
