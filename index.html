@@ -1,306 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-  <title>Nazrana Portfolio</title>
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
-
-    *{
-        padding: 0;
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        box-sizing: border-box;
-    }
-
-    html{
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-    }
-
-    body{
-        width: 100%;
-        min-height: 100vh;
-        overflow-x: hidden;
-        background: linear-gradient(to right, #ffe6f0, #d8c7ff, #cce7ff);
-    }
-
-    nav{
-        width: 100%;
-        height: 10vh;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-    }
-
-    .nav-container{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    .logo{
-        color: #1e2a78;
-        font-size: 2rem;
-        font-weight: bolder;
-    }
-
-    .logo span{
-        color: #ff4f81;
-        text-shadow: 0 0 10px #ff4f81;
-    }
-
-    .hamburg, .cancel{
-        cursor: pointer;
-        position: absolute;
-        right: 15px;
-        top: 10px;
-        color: #1e2a78;
-        font-size: 2rem;
-        display: none;
-    }
-
-    .nav-container .links {
-        display: flex;
-        gap: 3rem;
-        align-items: center;
-    }
-
-    .nav-container .links a{
-        position: relative;
-        font-size: 1.2rem;
-        color: #1e2a78;
-        text-decoration: none;
-        font-weight: 500;
-        transition: 0.3s linear;
-    }
-
-    .nav-container .links a::before{
-        position: absolute;
-        content: "";
-        bottom: -3px;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background-color: #ff4f81;
-        transition: 0.2s linear;
-    }
-
-    .nav-container .links a:hover::before{
-        width: 100%;
-    }
-
-    .nav-container .contact-btn{
-        background-color: transparent;
-        padding: 5px 20px;
-        border-radius: 20px;
-        border: 2px solid #ff4f81;
-        transition: 0.2s linear;
-    }
-
-    .nav-container .contact-btn a{
-        color: #1e2a78;
-        transition: 0.3s linear;
-    }
-
-    .nav-container .contact-btn:hover, .nav-container .contact-btn:hover a{
-        background-color: #ff4f81;
-        color: white;
-    }
-
-    .nav-container .links a:hover{
-        color: #ff4f81;
-    }
-
-    .dropdown{
-        z-index: 100;
-        position: absolute;
-        top: 0;
-        transform: translateY(-500px);
-        width: 100%;
-        height: auto;
-        backdrop-filter: brightness(40%) blur(3px);
-        box-shadow: 0 0 20px black;
-        transition: 0.2s linear;
-    }
-
-    .dropdown .links a{
-        color: white;
-        display: flex;
-        text-decoration: none;
-        justify-content: center;
-        padding: 15px 0;
-        align-items: center;
-        transition: 0.2s linear;
-    }
-
-    .dropdown .links a:hover{
-        background-color: #6a0572;
-    }
-
-    section{
-        width: 100%;
-        min-height: 90vh;
-    }
-
-    .main-container{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        padding: 2rem 0;
-    }
-
-    .main-container .image{
-        z-index: -1;
-        width: 50%;
-    }
-
-    .main-container .image img{
-        width: 70%;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .main-container .content{
-        color: #1e2a78;
-        width: 40%;
-        min-height: 100px;
-    }
-
-    .content h1{
-        font-size: clamp(1rem, 2rem + 5vw, 3rem);
-    }
-
-    .content h1 span{
-        color: #ff4f81;
-        text-shadow: 0 0 10px #ff4f81;
-    }
-
-    .content .typewriter{
-        font-weight: 600;
-        font-size: clamp(1rem, 1rem + 5vw, 2rem);
-    }
-
-    .content .typewriter span{
-        color: #6a0572;
-        font-size: 2.5rem;
-        text-shadow: 0 0 5px #6a0572;
-        position: relative;
-        transition: 0.3s linear;
-    }
-
-    .typewriter span::before{
-        content: "Developer";
-        animation: words 15s infinite;
-    }
-
-    .typewriter span::after{
-        content: "";
-        position: absolute;
-        width: calc(100% + 8px);
-        height: 100%;
-        border-left: 3px solid #ff4f81;
-        animation: cursor 0.6s linear infinite;
-    }
-     .typewriter {
-  font-weight: 600;
-  font-size: clamp(1rem, 1rem + 5vw, 2rem);
-  display: flex;
-  align-items: center;
-  min-height: 1.5em;
-}
-
-#changing-text {
-  display: inline-block;
-  font-weight: bold;
-  color: #ff4f81;
-  min-width: 130px;
-  text-align: center;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-  vertical-align: top;
-  font-size: 1em; /* A bit smaller */
-  
-}
-
-    @keyframes cursor {
-        to{
-            border-left: 3px solid #6a0572;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazrana Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <style>
+      
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
         }
-    }
 
-    @keyframes words {
-        0%, 33%{
-            content: "A Developer";
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
-        34%, 66%{
-            content: "An Engineer";
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(to right, #ffe6f0, #d8c7ff, #cce7ff);
         }
-        67%, 100%{
-            content: "A Dreamer";
+
+        /* Navigation Styles */
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
-    }
 
-    .content p{
-        font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
-        margin: 10px 0;
-    }
+        .nav-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
 
-    .social-links i{
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 3rem;
-        height: 3rem;
-        background-color:transparent;
-        border: 0.2rem solid #6a0572;
-        border-radius: 50%;
-        color:#6a0572;
-        margin: 5px 10px;
-        font-size: 1.5rem;
-        transition: 0.2s linear;
-    }
+        .logo {
+            color: #1e2a78;
+            font-size: 2rem;
+            font-weight: bolder;
+        }
 
-    .social-links i:hover{
-        scale: 1.3;
-        color: white;
-        background-color: #ff4f81;
-        filter: drop-shadow(0 0 10px #ff4f81);
-    }
+        .logo span {
+            color: #ff4f81;
+            text-shadow: 0 0 10px #ff4f81;
+        }
 
-    .content button{
-        width: 40%;
-        height: 6vh;
-        margin: 30px;
-        background-color: #ff4f81;
-        color: white;
-        border: none;
-        outline: none;
-        font-size: 100%;
-        font-weight: 700;
-        border-radius: 5px;
-        transition: 0.2s linear;
-    }
+        .hamburg, .cancel {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #1e2a78;
+            font-size: 2rem;
+            display: none;
+        }
 
-    .content button:hover{
-     scale: 1.1;
-     color: #6a0572;
-     border: 2px solid #6a0572;
-     background-color: transparent;
-     font-weight: 700;
-     box-shadow: 0 0 40px #ff4f81;
-    }
+        .nav-container .links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
 
-    /* Main Skills Section Styles */
+        .nav-container .links a {
+            position: relative;
+            font-size: 1.2rem;
+            color: #1e2a78;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s linear;
+        }
+
+        .nav-container .links a::before {
+            position: absolute;
+            content: "";
+            bottom: -3px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: #ff4f81;
+            transition: 0.2s linear;
+        }
+
+        .nav-container .links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-container .links a:hover {
+            color: #ff4f81;
+        }
+
+        .dropdown {
+            z-index: 100;
+            position: absolute;
+            top: 0;
+            transform: translateY(-500px);
+            width: 100%;
+            height: auto;
+            backdrop-filter: brightness(40%) blur(3px);
+            box-shadow: 0 0 20px black;
+            transition: 0.2s linear;
+        }
+
+        .dropdown .links a {
+            color: white;
+            display: flex;
+            text-decoration: none;
+            justify-content: center;
+            padding: 15px 0;
+            align-items: center;
+            transition: 0.2s linear;
+        }
+
+        .dropdown .links a:hover {
+            background-color: #6a0572;
+        }
+
+        /* Section Styles */
+        section {
+            width: 100%;
+            min-height: 90vh;
+        }
+
+        /* Home Section */
+        .main-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .main-container .image {
+            z-index: -1;
+            width: 50%;
+        }
+
+        .main-container .image img {
+            width: 70%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .main-container .content {
+            color: #1e2a78;
+            width: 40%;
+            min-height: 100px;
+        }
+
+        .content h1 {
+            font-size: clamp(1rem, 2rem + 5vw, 3rem);
+        }
+
+        .content h1 span {
+            color: #ff4f81;
+            text-shadow: 0 0 10px #ff4f81;
+        }
+
+        .content .typewriter {
+            font-weight: 600;
+            font-size: clamp(1rem, 1rem + 5vw, 2rem);
+            display: flex;
+            align-items: center;
+            min-height: 1.5em;
+        }
+
+        #changing-text {
+            display: inline-block;
+            font-weight: bold;
+            color: #ff4f81;
+            min-width: 130px;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            vertical-align: top;
+            font-size: 1em;
+        }
+
+        .content p {
+            font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
+            margin: 10px 0;
+        }
+
+        .social-links i {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 3rem;
+            height: 3rem;
+            background-color: transparent;
+            border: 0.2rem solid #6a0572;
+            border-radius: 50%;
+            color: #6a0572;
+            margin: 5px 10px;
+            font-size: 1.5rem;
+            transition: 0.2s linear;
+        }
+
+        .social-links i:hover {
+            scale: 1.3;
+            color: white;
+            background-color: #ff4f81;
+            filter: drop-shadow(0 0 10px #ff4f81);
+        }
+
+        .content button {
+            width: 40%;
+            height: 6vh;
+            margin: 30px;
+            background-color: #ff4f81;
+            color: white;
+            border: none;
+            outline: none;
+            font-size: 100%;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: 0.2s linear;
+        }
+
+        .content button:hover {
+            scale: 1.1;
+            color: #6a0572;
+            border: 2px solid #6a0572;
+            background-color: transparent;
+            font-weight: 700;
+            box-shadow: 0 0 40px #ff4f81;
+        }
+
+        /* Common Section Title Styles */
+        .section-title {
+            font-size: clamp(2rem, 3rem + 2vw, 4rem);
+            color: #ff4f81;
+            text-shadow: 0 0 10px rgba(255, 79, 129, 0.3);
+            margin-bottom: 1rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #ff4f81, #6a0572);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(255, 230, 240, 0.8), rgba(216, 199, 255, 0.8), rgba(204, 231, 255, 0.8));
+            padding: 4rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-text {
+            flex: 1;
+            color: #1e2a78;
+        }
+
+        .about-text h2 {
+            font-size: clamp(2rem, 3rem + 2vw, 4rem);
+            color: #ff4f81;
+            text-shadow: 0 0 10px rgba(255, 79, 129, 0.3);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #ff4f81, #6a0572);
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            font-size: clamp(0.9rem, 0.5rem + 2vw, 1.2rem);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .about-text p b {
+            color: #ff4f81;
+            text-shadow: 0 0 5px rgba(255, 79, 129, 0.3);
+        }
+
+        .about-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(106, 5, 114, 0.3);
+            transition: transform 0.3s ease;
+            border: 3px solid rgba(255, 79, 129, 0.2);
+        }
+
+        .about-img img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(106, 5, 114, 0.4);
+        }
+
+        /* Education Section */
+        .education-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid rgba(255, 79, 129, 0.2);
+            width: 100%;
+        }
+
+        .education-title {
+            font-size: 2.5rem;
+            color: #ff4f81;
+            text-shadow: 0 0 10px rgba(255, 79, 129, 0.3);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .education-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #ff4f81, #6a0572);
+            border-radius: 2px;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            border: 2px solid rgba(255, 79, 129, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(106, 5, 114, 0.2);
+            border-color: #ff4f81;
+        }
+
+        .education-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #ff4f81;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .education-logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .education-name {
+            color: #1e2a78;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .education-degree {
+            color: #6a0572;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .education-year {
+            color: #ff4f81;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: rgba(255, 79, 129, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            border: 1px solid rgba(255, 79, 129, 0.3);
+        }
+
+        /* Activities Section - Enhanced Beautiful Styling */
+        #activities {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 230, 240, 0.4), rgba(216, 199, 255, 0.4), rgba(204, 231, 255, 0.4));
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Beautiful floating particles background */
+        #activities::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 79, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(106, 5, 114, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(204, 231, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+            animation: floatingBg 20s ease-in-out infinite;
+        }
+
+        @keyframes floatingBg {
+            0%, 100% { transform: translateY(0px); }
+            33% { transform: translateY(-10px); }
+            66% { transform: translateY(10px); }
+        }
+
+        .activities-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced Activities Title */
+        .activities-title {
+            font-size: clamp(2.5rem, 4rem + 2vw, 5rem);
+            color: #ff4f81;
+            text-shadow: 
+                0 0 20px rgba(255, 79, 129, 0.4),
+                0 0 40px rgba(255, 79, 129, 0.2),
+                0 0 60px rgba(255, 79, 129, 0.1);
+            margin-bottom: 1.5rem;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: -2px;
+            background: linear-gradient(45deg, #ff4f81, #6a0572, #ff4f81);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .activities-title span {
+            color: #1e2a78;
+            text-shadow: 
+                0 0 15px rgba(30, 42, 120, 0.3),
+                0 0 30px rgba(30, 42, 120, 0.2);
+            font-weight: 300;
+            position: relative;
+        }
+
+        /* Decorative elements around title */
+        .activities-title::before,
+        .activities-title::after {
+            content: '✨';
+            position: absolute;
+            font-size: 2rem;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        .activities-title::before {
+            left: -60px;
+            top: 0px;
+            animation-delay: 0s;
+        }
+
+        .activities-title::after {
+            right: -60px;
+            top: 0px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% { 
+                transform: scale(1.3) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Enhanced underline effect */
+        .activities-title-underline {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 6px;
+            background: linear-gradient(90deg, 
+                transparent,
+                #ff4f81,
+                #6a0572,
+                #ff4f81,
+                transparent
+            );
+            border-radius: 3px;
+            animation: underlineGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes underlineGlow {
+            0%, 100% { 
+                box-shadow: 0 0 10px rgba(255, 79, 129, 0.3);
+                transform: translateX(-50%) scaleX(1);
+            }
+            50% { 
+                box-shadow: 0 0 20px rgba(255, 79, 129, 0.6);
+                transform: translateX(-50%) scaleX(1.1);
+            }
+        }
+
+        /* Beautiful subtitle */
+        .album-subtitle {
+            font-size: clamp(1rem, 1.3rem + 1vw, 1.6rem);
+            background: linear-gradient(45deg, #6a0572, #ff4f81, #1e2a78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5rem;
+            font-weight: 500;
+            opacity: 0.9;
+            position: relative;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        .album-subtitle::before {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            left: -30px;
+            top: -10px;
+            color: rgba(255, 79, 129, 0.3);
+            font-family: serif;
+        }
+
+        .album-subtitle::after {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            right: -30px;
+            bottom: -20px;
+            color: rgba(255, 79, 129, 0.3);
+            font-family: serif;
+        }
+
+        /* Activity showcase */
+        .activity-showcase {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Navigation buttons */
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 79, 129, 0.6);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: #ff4f81;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 
+                0 8px 25px rgba(255, 79, 129, 0.2),
+                inset 0 2px 10px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-button:hover {
+            background: #ff4f81;
+            color: white;
+            transform: scale(1.15);
+            box-shadow: 
+                0 15px 35px rgba(255, 79, 129, 0.4),
+                0 0 30px rgba(255, 79, 129, 0.3);
+            border-color: #ff4f81;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button:active {
+            transform: scale(1.05);
+        }
+
+        /* Activity card */
+        .activity-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 79, 129, 0.3);
+            transition: all 0.5s ease;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(255, 79, 129, 0.1);
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 79, 129, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 30px 60px rgba(106, 5, 114, 0.25),
+                0 0 50px rgba(255, 79, 129, 0.2);
+            border-color: #ff4f81;
+        }
+
+        .activity-card:hover::before {
+            opacity: 1;
+            animation: glow-rotate 3s linear infinite;
+        }
+
+        @keyframes glow-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .activity-image {
+            height: 240px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff4f81, #6a0572);
+            position: relative;
+        }
+
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card:hover .activity-image img {
+            transform: scale(1.08);
+        }
+
+        .activity-content {
+            padding: 2.5rem 2rem;
+            text-align: left;
+        }
+
+        .activity-title {
+            color: #1e2a78;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .activity-card:hover .activity-title {
+            color: #ff4f81;
+        }
+
+        .activity-description {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .activity-card:hover .activity-description {
+            color: #333;
+        }
+
+        .activity-counter {
+            text-align: center;
+            font-weight: 600;
+            color: #6a0572;
+            font-size: 1rem;
+            padding: 1rem 0;
+            border-top: 2px dashed rgba(106, 5, 114, 0.2);
+            margin-top: 1.5rem;
+            background: rgba(255, 79, 129, 0.05);
+            border-radius: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 884px) {
+            body { overflow-y: visible; }
+
+            nav .logo {
+                position: absolute;
+                top: 16px;
+                left: 15px;
+                font-size: 1.5rem;
+            }
+
+            .main-container { flex-direction: column; }
+            .nav-container .links { display: none; }
+            .hamburg, .cancel { display: block; }
+            .main-container .content { width: 80%; }
+            .cancel { color: white; }
+            .main-container .image { width: 100%; margin-bottom: 0px; }
+
+            .about-content-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .activities-title::before,
+            .activities-title::after {
+                display: none;
+            }
+
+            .album-subtitle::before,
+            .album-subtitle::after {
+                display: none;
+            }
+
+            .activity-showcase {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .nav-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .activities-title { font-size: 2.2rem; }
+            .album-subtitle { font-size: 1rem; }
+            .activity-card { margin: 0 0.5rem; }
+            .activity-content { padding: 1.5rem 1.2rem; }
+            .activity-title { font-size: 1.2rem; }
+            .activity-description { font-size: 0.9rem; }
+            .education-card { max-width: 400px; margin: 0 auto; }
+        }
+
+
+         /* Main Skills Section Styles */
     #my-main-skill {
         background: linear-gradient(135deg, rgba(255, 230, 240, 0.4), rgba(216, 199, 255, 0.4), rgba(204, 231, 255, 0.4));
         padding: 4rem 2rem;
@@ -824,127 +1371,7 @@
         box-shadow: 0 5px 15px rgba(255, 79, 129, 0.3);
     }
 
-    /* Education Section - FIXED */
-    .education-section {
-        margin-top: 4rem;
-        padding-top: 3rem;
-        border-top: 2px solid rgba(255, 79, 129, 0.2);
-        width: 100%;
-    }
-
-    .education-title {
-        font-size: 2.5rem;
-        color: #ff4f81;
-        text-shadow: 0 0 10px rgba(255, 79, 129, 0.3);
-        margin-bottom: 3rem;
-        text-align: center;
-        position: relative;
-    }
-
-    .education-title::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(to right, #ff4f81, #6a0572);
-        border-radius: 2px;
-    }
-
-    .education-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .education-card {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(15px);
-        border-radius: 20px;
-        padding: 2rem 1.5rem;
-        border: 2px solid rgba(255, 79, 129, 0.2);
-        text-align: center;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .education-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(106, 5, 114, 0.2);
-        border-color: #ff4f81;
-    }
-
-    .education-logo {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 1.5rem;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.95);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 3px solid #ff4f81;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .education-logo img {
-        width: 80px;
-        height: 80px;
-        object-fit: contain;
-        border-radius: 50%;
-    }
-
-    .education-name {
-        color: #1e2a78;
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        line-height: 1.3;
-    }
-
-    .education-degree {
-        color: #6a0572;
-        font-size: 1rem;
-        margin-bottom: 0.8rem;
-        font-weight: 500;
-    }
-
-    .education-year {
-        color: #ff4f81;
-        font-size: 0.95rem;
-        font-weight: 600;
-        background: rgba(255, 79, 129, 0.1);
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        display: inline-block;
-        border: 1px solid rgba(255, 79, 129, 0.3);
-    }
-
-    .education-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(45deg, transparent, rgba(255, 79, 129, 0.05), transparent);
-        transform: rotate(45deg);
-        transition: opacity 0.3s ease;
-        opacity: 0;
-    }
-
-    .education-card:hover::before {
-        opacity: 1;
-        animation: glow-rotate 3s linear infinite;
-    }
-
-    @media (max-width:884px) {
+     @media (max-width:884px) {
         body{
             overflow-y: visible;
         }
@@ -1130,121 +1557,124 @@
             font-size: 0.9rem;
         }
     }
-  </style>
+    </style>
 </head>
+
 <body>
-  <nav>
-    <div class="nav-container">
-      <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
-        <span>Nazrana</span>
-      </div>
-      <div class="links">
-        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#home">Home</a></div>
-        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"><a href="#about">About</a></div>
-        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#my-main-skill">Specialization</a></div>
-        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#skills">Skills</a></div>
-        <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#projects">Projects</a></div>
-      </div>
-      <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
-    </div>
-    <div class="dropdown">
-      <div class="links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#my-main-skill">Specialization</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+                <span>Nazrana</span>
+            </div>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#home">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"><a href="#about">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#specialization">Specialization</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#skills">Skills</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#projects">Projects</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#activities">Activities</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#specialization">Specialization</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#activities">Activities</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
 
-        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
-      </div>
-    </div>
-  </nav>
-
- <!-- Home Section -->
-<section id="home">
-  <div class="main-container">
-    <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
-      <img src="assets/main.png" alt="Nazrana">
-    </div>
-    <div class="content">
-      <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">
-        Hey I'm <span>Nazrana</span>
-      </h1>
-      <div class="typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">
-  I am&nbsp;&nbsp;<span id="changing-text"></span>
-</div>
-      <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
-        B.Sc. CSE Undergraduate | Future AI/ML Engineer with a passion for innovation
-      </p>
-      <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
-        <a href="#"><i class="fa-brands fa-github"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-      </div>
-      <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
-        <button>Download CV</button>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="main-container">
+            <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
+                <img src="https://via.placeholder.com/400x500?text=Nazrana" alt="Nazrana">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">
+                    Hey I'm <span>Nazrana</span>
+                </h1>
+                <div class="typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">
+                    I am&nbsp;&nbsp;<span id="changing-text"></span>
+                </div>
+                <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
+                    B.Sc. CSE Undergraduate | Future AI/ML Engineer with a passion for innovation
+                </p>
+                <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+                <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
+                    <button>Download CV</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- About Section -->
-  <section id="about">
-    <div class="about-container">
-      <div class="about-content-wrapper">
-        <div class="about-text" data-aos="fade-right" data-aos-duration="1200">
-          <h2>About Me</h2>
-          <p>
-            Hello! I'm <b>Nazrana</b>,I’ve been curious about computers and technology since I was a school girl
-          <p>
-            always wondering how Google works and how tech is created. I’ve also loved mathematics, physics, and astronomy since childhood, fascinated by how stars shine, galaxies move, and the universe works
-          </p>
-          <p>
-           I studied science in SSC and HSC, and I’m now graduating with a BSc in Computer Science. My curiosity has grown into a passion for learning, coding, and pursuing research, with dreams of higher studies abroad.
-          </p>
-          <div class="skills-highlight" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            
-          </div>
-        </div>
-        <div class="about-img" data-aos="fade-left" data-aos-duration="1200">
-          <img src="assets/aboutme.jpg" alt="Nazrana About Photo">
-        </div>
-      </div>
+    <section id="about">
+        <div class="about-container">
+            <div class="about-content-wrapper">
+                <div class="about-text" data-aos="fade-right" data-aos-duration="1200">
+                    <h2>About Me</h2>
+                    <p>
+                        Hello! I'm <b>Nazrana</b>, I've been curious about computers and technology since I was a school girl, always wondering how Google works and how tech is created.
+                    </p>
+                    <p>
+                        I've also loved mathematics, physics, and astronomy since childhood, fascinated by how stars shine, galaxies move, and the universe works.
+                    </p>
+                    <p>
+                        I studied science in SSC and HSC, and I'm now graduating with a BSc in Computer Science. My curiosity has grown into a passion for learning, coding, and pursuing research, with dreams of higher studies abroad.
+                    </p>
+                </div>
+                <div class="about-img" data-aos="fade-left" data-aos-duration="1200">
+                    <img src="https://via.placeholder.com/400x400?text=About+Me" alt="Nazrana About Photo">
+                </div>
+            </div>
 
-      <!-- Education Section -->
-      <div class="education-section" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
-        <h3 class="education-title">My Education</h3>
-        <div class="education-grid">
-          <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
-            <div class="education-logo">
-              <img src="assets/unilogo.png" alt="University Logo">
+            <!-- Education Section -->
+            <div class="education-section" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+                <h3 class="education-title">My Education</h3>
+                <div class="education-grid">
+                    <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
+                        <div class="education-logo">
+                            <img src="https://via.placeholder.com/80x80?text=IIUC" alt="University Logo">
+                        </div>
+                        <div class="education-name">International Islamic University Chittagong</div>
+                        <div class="education-degree">Bachelor of Computer Science and Engineering</div>
+                        <div class="education-year">2023 - 2027</div>
+                    </div>
+                    <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
+                        <div class="education-logo">
+                            <img src="https://via.placeholder.com/80x80?text=CPWC" alt="College Logo">
+                        </div>
+                        <div class="education-name">Chittagong Port Women College</div>
+                        <div class="education-degree">Higher Secondary Certificate</div>
+                        <div class="education-year">2019 - 2021</div>
+                    </div>
+                    <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="500">
+                        <div class="education-logo">
+                            <img src="https://via.placeholder.com/80x80?text=SBK" alt="School Logo">
+                        </div>
+                        <div class="education-name">Silver Bells Kindergarten & Girls' High School</div>
+                        <div class="education-degree">Secondary School Certificate</div>
+                        <div class="education-year">2011 - 2018</div>
+                    </div>
+                </div>
             </div>
-            <div class="education-name">International Islamic University Chittagong</div>
-            <div class="education-degree">Bachelor of Computer Science and Engineering</div>
-            <div class="education-year">2023 - 2027</div>
-          </div>
-          <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
-            <div class="education-logo">
-              <img src="assets/collegelogo.png" alt="College Logo">
-            </div>
-            <div class="education-name">Chittagong Port Women College</div>
-            <div class="education-degree">Higher Secondary Certificate</div>
-            <div class="education-year">2019 - 2021</div>
-          </div>
-          <div class="education-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="500">
-            <div class="education-logo">
-              <img src="assets/sbklogo.jpeg" alt="School Logo">
-            </div>
-            <div class="education-name">Silver Bells Kindergarten & Girls' High School</div>
-            <div class="education-degree">Secondary School Certificate</div>
-            <div class="education-year">2011 - 2018</div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
+
+    
    <section id="my-main-skill">
   <div class="mainskill-container">
     <h2 class="mainskill-title" data-aos="fade-down" data-aos-duration="1000">My Specialization</h2>
@@ -1417,69 +1847,136 @@
     </div>
   </section>
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({offset:0});
+    <!-- Activities Section with Beautiful Enhanced Design -->
+    <section id="activities">
+        <div class="activities-container">
+            <h2 class="activities-title" data-aos="fade-down" data-aos-duration="1000">
+                My <span>Activities</span>
+                <div class="activities-title-underline"></div>
+            </h2>
+            <p class="album-subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                Exploring passions beyond academics
+            </p>
 
-    function hamburg(){
-      const navbar = document.querySelector(".dropdown")
-      navbar.style.transform = "translateY(0px)"
-    }
+            <div class="activity-showcase" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="400">
+                <!-- Left Button -->
+                <button class="nav-button nav-left" onclick="previousActivity()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
 
-    function cancel(){
-      const navbar = document.querySelector(".dropdown")
-      navbar.style.transform = "translateY(-500px)"
-    }
+                <!-- Activity Card -->
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img id="activity-img" src="https://via.placeholder.com/450x240?text=Photography+Club" alt="Activity">
+                    </div>
+                    <div class="activity-content">
+                        <h3 id="activity-title" class="activity-title">Photography Club</h3>
+                        <p id="activity-description" class="activity-description">I love capturing moments and telling stories through the lens.</p>
+                        <div class="activity-counter">
+                            <span id="current-activity">1</span> / <span id="total-activities">3</span>
+                        </div>
+                    </div>
+                </div>
 
-    // Typewriter effect for changing text
-    const texts = [];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const changingText = document.getElementById('changing-text');
+                <!-- Right Button -->
+                <button class="nav-button nav-right" onclick="nextActivity()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
 
-    function typeWriter() {
-      const currentText = texts[textIndex];
-      
-      if (isDeleting) {
-        changingText.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        changingText.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-      }
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 100,
+        });
 
-      if (!isDeleting && charIndex === currentText.length) {
-        setTimeout(() => isDeleting = true, 1500);
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-      }
+        // Typewriter effect
+        const texts = ['A Developer', 'An Engineer', 'A Dreamer'];
+        let currentIndex = 0;
+        const changingText = document.getElementById('changing-text');
 
-      const speed = isDeleting ? 50 : 100;
-      setTimeout(typeWriter, speed);
-    }
-
-    // Start the typewriter effect
-    typeWriter();
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          
-          // Close mobile menu if open
-          const navbar = document.querySelector(".dropdown");
-          navbar.style.transform = "translateY(-500px)";
+        function changeText() {
+            changingText.style.opacity = '0';
+            setTimeout(() => {
+                changingText.textContent = texts[currentIndex];
+                changingText.style.opacity = '1';
+                currentIndex = (currentIndex + 1) % texts.length;
+            }, 500);
         }
-      });
-    });
-  </script>
+
+        setInterval(changeText, 2000);
+        changeText(); // Initial call
+
+        // Navigation functions
+        function hamburg() {
+            const dropdown = document.querySelector('.dropdown');
+            dropdown.style.transform = 'translateY(0px)';
+        }
+
+        function cancel() {
+            const dropdown = document.querySelector('.dropdown');
+            dropdown.style.transform = 'translateY(-500px)';
+        }
+
+        // Activities Section JavaScript
+        document.addEventListener('DOMContentLoaded', function () {
+            const activities = [
+                {
+                    title: "Photography Club",
+                    description: "I love capturing moments and telling stories through the lens. Photography allows me to see the world from different perspectives and freeze beautiful moments in time.",
+                    image: "https://via.placeholder.com/450x240?text=Photography+Club&bg=ff4f81&color=fff"
+                },
+                {
+                    title: "Debate Society",
+                    description: "Sharpening public speaking and critical thinking skills through engaging debates and discussions on various topics that matter to our society.",
+                    image: "https://via.placeholder.com/450x240?text=Debate+Society&bg=6a0572&color=fff"
+                },
+                {
+                    title: "Volunteer Work",
+                    description: "Helping communities and making a difference in people's lives through various volunteer initiatives and social service programs.",
+                    image: "https://via.placeholder.com/450x240?text=Volunteer+Work&bg=1e2a78&color=fff"
+                }
+            ];
+
+            const activityImg = document.getElementById('activity-img');
+            const activityTitle = document.getElementById('activity-title');
+            const activityDescription = document.getElementById('activity-description');
+            const currentActivitySpan = document.getElementById('current-activity');
+            const totalActivitiesSpan = document.getElementById('total-activities');
+
+            let currentActivityIndex = 0;
+
+            function updateActivityDisplay() {
+                const activity = activities[currentActivityIndex];
+                activityImg.src = activity.image;
+                activityTitle.textContent = activity.title;
+                activityDescription.textContent = activity.description;
+                currentActivitySpan.textContent = currentActivityIndex + 1;
+                totalActivitiesSpan.textContent = activities.length;
+            }
+
+            window.nextActivity = function() {
+                currentActivityIndex = (currentActivityIndex + 1) % activities.length;
+                updateActivityDisplay();
+            };
+
+            window.previousActivity = function() {
+                currentActivityIndex = (currentActivityIndex - 1 + activities.length) % activities.length;
+                updateActivityDisplay();
+            };
+
+            updateActivityDisplay(); // Show first activity
+
+            // Auto-rotate activities every 5 seconds
+            setInterval(() => {
+                window.nextActivity();
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
